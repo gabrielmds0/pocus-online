@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>POCUS Online | Domine o Ultrassom à Beira-Leito</title>
+
+    <meta name="description" content="Aprenda a usar o ultrassom à beira-leito e transforme dúvida clínica em ação segura no paciente grave. Curso 100% online com os melhores especialistas em POCUS do Brasil." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#B6322E" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="POCUS Online | Domine o Ultrassom à Beira-Leito" />
+    <meta property="og:description" content="Aprenda POCUS com quem decide sob pressão. Curso 100% online, 95h de conteúdo focado em decisão clínica." />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="POCUS Online | Domine o Ultrassom à Beira-Leito" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Nemu tracking -->
+    <script src="https://trackings.nemu.com.br/trackings/OxVyKz8wj1/script.js" async data-tracking-id="OxVyKz8wj1" crossorigin="anonymous"></script>
+
+    <!-- ContentSquare -->
+    <script src="https://t.contentsquare.net/uxa/89e8860f4d474.js"></script>
+
+    <!-- Nemu UTM bridge -->
+    <script>
+    var timer = setInterval(function () {
+        var pixelPattern = /nemu_.{10}/;
+
+        clearInterval(timer);
+        var pixelTimer = setInterval(function () {
+            if (pixelPattern.test(document.location.search)) {
+                var params = new URLSearchParams(window.location.search);
+                var utm_source = params.get("utm_source");
+                var utm_campaign = params.get("utm_campaign");
+                var utm_medium = params.get("utm_medium");
+                var utm_content = params.get("utm_content");
+
+                var inputTimer = setInterval(function () {
+                    var inputUtmSource = document.querySelector("input#form-field-utm_source");
+                    var inputUtmCampaign = document.querySelector("input#form-field-utm_campaign");
+                    var inputUtmMedium = document.querySelector("input#form-field-utm_medium");
+                    var inputUtmContent = document.querySelector("input#form-field-utm_content");
+
+                    if (inputUtmSource) {
+                        inputUtmSource.value = utm_source;
+                        inputUtmCampaign.value = utm_campaign;
+                        inputUtmMedium.value = utm_medium;
+                        inputUtmContent.value = utm_content;
+                        clearInterval(inputTimer);
+                    }
+                }, 100);
+                clearInterval(pixelTimer);
+            }
+        }, 100);
+    }, 100);
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1064327147462690');
+    fbq('track', 'PageView');
+    </script>
+
+    <!-- n8n pageview webhook -->
+    <script>
+    function getCookie(name) {
+      var value = '; ' + document.cookie;
+      var parts = value.split('; ' + name + '=');
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    fetch("https://api64.ipify.org?format=json")
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        var urlParams = new URLSearchParams(window.location.search);
+
+        var payload = {
+          fbp: getCookie('_fbp') || null,
+          fbc: getCookie('_fbc') || null,
+          ua: navigator.userAgent,
+          url: window.location.href,
+          ip: data.ip,
+          timestamp: Math.floor(Date.now() / 1000),
+          utm_source: urlParams.get('utm_source'),
+          utm_medium: urlParams.get('utm_medium'),
+          utm_campaign: urlParams.get('utm_campaign'),
+          utm_content: urlParams.get('utm_content'),
+          utm_term: urlParams.get('utm_term')
+        };
+
+        fetch("https://projetolm-n8n.8x0hqh.easypanel.host/webhook/pageview", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(payload)
+        })
+        .catch(function(error) { console.error('Error tracking pageview:', error); });
+      })
+      .catch(function(error) { console.error('Error getting IP:', error); });
+    </script>
+  </body>
+</html>

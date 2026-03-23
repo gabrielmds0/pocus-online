@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.\\(tsx?|css|html\\)$')",
+      "Bash(npx vite:*)"
+    ]
+  }
+}
