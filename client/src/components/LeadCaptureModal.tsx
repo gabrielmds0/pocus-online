@@ -35,6 +35,7 @@ interface LeadCaptureModalProps {
 export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModalProps) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitError, setSubmitError] = React.useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = React.useState<{ email?: string; telefone?: string }>({});
 
   const pageLoadTime = React.useRef(
     typeof performance !== "undefined" && performance.timeOrigin
@@ -67,15 +68,57 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
     });
   }, [open, trackFormStart]);
 
+  const validateEmail = (value: string): string => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value) ? "" : "Digite um e-mail válido.";
+  };
+
+  const validatePhone = (value: string): string => {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 10 && digits.length <= 11
+      ? ""
+      : "Digite um telefone válido com DDD.";
+  };
+
+  const applyPhoneMask = (raw: string): string => {
+    let v = raw.replace(/\D/g, "").slice(0, 11);
+    if (v.length > 6) v = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+    else if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+    else if (v.length > 0) v = `(${v}`;
+    return v;
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
 
+    const formData = new FormData(form);
+    const payload: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      payload[key] = String(value);
+    });
+
+    // Validação customizada de email e telefone
+    const emailError = validateEmail(payload.email || "");
+    const phoneError = validatePhone(payload.telefone || "");
+
+    if (emailError || phoneError) {
+      setFieldErrors({
+        email: emailError || undefined,
+        telefone: phoneError || undefined,
+      });
+      trackFormValidationError([
+        ...(emailError ? ["email"] : []),
+        ...(phoneError ? ["telefone"] : []),
+      ]);
+      return;
+    }
+
+    // Validação nativa dos demais campos obrigatórios (nome, radio)
     if (!form.checkValidity()) {
       form.reportValidity();
       const invalidFields: string[] = [];
-      const inputs = form.querySelectorAll("input[required]");
-      inputs.forEach((input) => {
+      form.querySelectorAll("input[required]").forEach((input) => {
         if (!(input as HTMLInputElement).validity.valid) {
           invalidFields.push((input as HTMLInputElement).name || (input as HTMLInputElement).id);
         }
@@ -86,12 +129,6 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
 
     setIsSubmitting(true);
     setSubmitError(null);
-
-    const formData = new FormData(form);
-    const payload: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      payload[key] = String(value);
-    });
 
     const selectedTempoFormado = tempoFormadoOptions.find(
       (option) => option.label === payload.tempo_formado
@@ -172,7 +209,7 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
           <DialogTitle>Complete seus dados</DialogTitle>
           <DialogDescription>Preencha o formulário para continuar sua inscrição.</DialogDescription>
         </DialogHeader>
-        <form className="space-y-5" onSubmit={handleSubmit}>
+        <form className="space-y-5" onSubmit={handleSubmit} noValidate>
           <div className="space-y-2">
             <Label htmlFor="lead-name">
               Nome completo <span className="text-destructive">*</span>
@@ -203,9 +240,18 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
                 placeholder="joao@exemplo.com"
                 autoComplete="email"
                 required
-                className="h-11 pl-10"
+                className={`h-11 pl-10 ${fieldErrors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                onChange={(e) =>
+                  setFieldErrors((prev) => ({
+                    ...prev,
+                    email: e.target.value ? validateEmail(e.target.value) : undefined,
+                  }))
+                }
               />
             </div>
+            {fieldErrors.email && (
+              <p className="text-xs text-destructive">{fieldErrors.email}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -222,9 +268,20 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
                 placeholder="(11) 99999-9999"
                 autoComplete="tel"
                 required
-                className="h-11 pl-10"
+                className={`h-11 pl-10 ${fieldErrors.telefone ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                onChange={(e) => {
+                  const masked = applyPhoneMask(e.target.value);
+                  e.target.value = masked;
+                  setFieldErrors((prev) => ({
+                    ...prev,
+                    telefone: masked ? validatePhone(masked) : undefined,
+                  }));
+                }}
               />
             </div>
+            {fieldErrors.telefone && (
+              <p className="text-xs text-destructive">{fieldErrors.telefone}</p>
+            )}
           </div>
 
           <fieldset className="space-y-3">
