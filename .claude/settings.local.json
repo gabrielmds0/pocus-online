@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(grep -E '\\\\.\\(tsx?|css|html\\)$')",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(gh repo:*)",
+      "Bash(grep -E \"\\\\.\\(html|css|ts|tsx|js|jsx\\)$\")",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(xxd)"
     ]
   }
 }

@@ -1,21 +1,29 @@
 /**
- * Seção 4 - Plausibilidade
+ * Seção 4 - Plausibilidade (LIGHT)
  */
 
-export default function Plausibilidade() {
-  return (
-    <section className="section-dark section-padding noise-overlay">
-      <div className="container relative">
-        <div className="lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:items-center">
-          <div className="max-w-3xl mx-auto lg:mx-0">
-            <span className="tag tag-dark mb-6 inline-block">Decisão Clínica</span>
+import { useReveal } from "@/hooks/useReveal";
 
-            <h2 className="headline-section mb-10 leading-snug">
-              Antecipe a decisão clínica no paciente grave{" "}
-              <span className="text-accent">com POCUS</span>
+const baseUrl = import.meta.env.BASE_URL;
+
+export default function Plausibilidade() {
+  const sectionRef = useReveal<HTMLElement>();
+
+  return (
+    <section ref={sectionRef} className="section-light section-padding reveal">
+      <div className="container">
+        <div className="lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:items-center">
+          <div className="max-w-3xl mx-auto lg:mx-0">
+            <span className="tag mb-6 inline-block">A REALIDADE</span>
+
+            <h2 className="headline-section mb-10 leading-snug text-left">
+              Antecipar a decisão clínica{" "}
+              <strong className="text-accent">com POCUS</strong>{" "}
+              muda o desfecho no{" "}
+              <strong className="text-accent">paciente grave</strong>
             </h2>
 
-            <div className="body-md opacity-85 space-y-5">
+            <div className="body-md text-muted-foreground space-y-5">
               <p>
                 Decisão depende de informação no momento certo. No modelo tradicional,
                 essa informação vem depois. Com POCUS, aparece durante o atendimento.
@@ -27,27 +35,22 @@ export default function Plausibilidade() {
               </p>
             </div>
 
-            <div className="quote-block quote-block-dark mt-8 py-1">
-              <p className="text-lg sm:text-xl font-medium opacity-95">
+            <div className="quote-block mt-10 py-1">
+              <p className="text-lg sm:text-xl font-medium text-foreground">
                 Isso diminui a incerteza e acelera a decisão.
               </p>
             </div>
           </div>
 
-          <div className="mt-10 lg:mt-0">
-            <div className="rounded-2xl overflow-hidden">
-              <div className="relative aspect-[4/3] bg-white/5 flex items-center justify-center">
-                <div className="text-center px-8">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-4">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-accent" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                      <path d="M2 17l10 5 10-5" />
-                      <path d="M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                  <p className="text-white/40 text-sm">Imagem será inserida em breve</p>
-                </div>
-              </div>
+          <div className="mt-12 lg:mt-0">
+            <div className="img-frame">
+              <img
+                src={`${baseUrl}images/IMAGEM-1-.png`}
+                alt="POCUS na prática clínica"
+                className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>

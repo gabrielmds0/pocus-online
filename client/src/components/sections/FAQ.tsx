@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useReveal } from "@/hooks/useReveal";
 
 const faq = [
   {
@@ -61,8 +62,10 @@ const faq = [
 ];
 
 export default function FAQ() {
+  const sectionRef = useReveal<HTMLElement>();
+
   return (
-    <section className="section-light section-padding">
+    <section ref={sectionRef} className="section-light section-padding reveal">
       <div className="container">
         <div className="text-center mb-12 md:mb-16">
           <div className="accent-line mx-auto mb-6" />
@@ -75,12 +78,13 @@ export default function FAQ() {
               <AccordionItem
                 key={item.id}
                 value={item.id}
-                className="card-elevated border-0 px-5 sm:px-6 overflow-hidden"
+                className="bg-white rounded-2xl border border-border/40 px-5 sm:px-7 overflow-hidden transition-all duration-300 hover:border-accent/15"
+                style={{ boxShadow: "0 1px 3px oklch(0 0 0 / 0.02), 0 4px 16px oklch(0 0 0 / 0.03)" }}
               >
-                <AccordionTrigger className="text-left font-medium text-sm sm:text-base py-5 hover:no-underline gap-4 [&[data-state=open]]:text-accent">
+                <AccordionTrigger className="text-left font-semibold text-sm sm:text-base py-5 hover:no-underline gap-4 [&[data-state=open]]:text-accent transition-colors duration-200">
                   {item.pergunta}
                 </AccordionTrigger>
-                <AccordionContent className="body-sm text-muted-foreground pb-5">
+                <AccordionContent className="body-sm text-muted-foreground pb-6 leading-relaxed">
                   {item.resposta}
                 </AccordionContent>
               </AccordionItem>
