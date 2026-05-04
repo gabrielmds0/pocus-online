@@ -98,7 +98,6 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
       payload[key] = String(value);
     });
 
-    // Validação customizada de email e telefone
     const emailError = validateEmail(payload.email || "");
     const phoneError = validatePhone(payload.telefone || "");
 
@@ -114,7 +113,6 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
       return;
     }
 
-    // Validação nativa dos demais campos obrigatórios (nome, radio)
     if (!form.checkValidity()) {
       form.reportValidity();
       const invalidFields: string[] = [];
@@ -254,12 +252,20 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
             )}
           </div>
 
+          {/* CAMPO DE TELEFONE ALTERADO */}
           <div className="space-y-2">
             <Label htmlFor="lead-phone">
               Telefone celular <span className="text-destructive">*</span>
             </Label>
-            <div className="relative">
-              <Phone className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <div
+              className={`flex h-11 items-center overflow-hidden rounded-md border bg-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 ${
+                fieldErrors.telefone ? "border-destructive focus-within:ring-destructive" : "border-input"
+              }`}
+            >
+              <div className="flex h-full items-center gap-1.5 border-r border-input bg-muted px-3 text-sm font-medium text-muted-foreground select-none">
+                <Phone className="size-4" />
+                <span>+55</span>
+              </div>
               <Input
                 id="lead-phone"
                 name="telefone"
@@ -268,7 +274,7 @@ export default function LeadCaptureModal({ open, onOpenChange }: LeadCaptureModa
                 placeholder="(11) 99999-9999"
                 autoComplete="tel"
                 required
-                className={`h-11 pl-10 ${fieldErrors.telefone ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                className="h-full flex-1 rounded-none border-0 pl-3 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
                 onChange={(e) => {
                   const masked = applyPhoneMask(e.target.value);
                   e.target.value = masked;
