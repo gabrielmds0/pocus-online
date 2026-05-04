@@ -1,6 +1,5 @@
 import { Calendar, CreditCard, Monitor } from "lucide-react";
 import { useEffect, useRef } from "react";
-import LeadCaptureButton from "@/components/LeadCaptureButton";
 
 const baseUrl = import.meta.env.BASE_URL;
 const playerId = "69e6871488365845bdfd0f9a";
@@ -93,9 +92,15 @@ export default function Hero() {
 
             {/* CTA */}
             <div>
-              <LeadCaptureButton className="btn-cta btn-cta-pulse text-base lg:text-lg w-full sm:w-auto lg:px-10 lg:py-5">
+              <button
+                type="button"
+                className="btn-cta btn-cta-pulse text-base lg:text-lg w-full sm:w-auto lg:px-10 lg:py-5"
+                onClick={() => {
+                  document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
                 Quero decidir com mais segurança no plantão
-              </LeadCaptureButton>
+              </button>
               <p className="text-primary-foreground/50 text-xs mt-3">
                 Garantia de 7 dias · Cadastro rápido
               </p>
