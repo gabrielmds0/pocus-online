@@ -96,7 +96,10 @@ export default function Hero() {
                 type="button"
                 className="btn-cta btn-cta-pulse text-base lg:text-lg w-full sm:w-auto lg:px-10 lg:py-5"
                 onClick={() => {
-                  document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+                  const el = document.getElementById("oferta");
+                  if (!el) return;
+                  const top = el.getBoundingClientRect().top + window.scrollY;
+                  window.scrollTo({ top, behavior: "smooth" });
                 }}
               >
                 Quero decidir com mais segurança no plantão
