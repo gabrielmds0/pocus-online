@@ -18,13 +18,14 @@ const WEBHOOK_URL =
   "https://projetolm-n8n.8x0hqh.easypanel.host/webhook/6f8b3cb4-f5e0-4e35-8d50-2e85eb0cc06b";
 
 const tempoFormadoOptions = [
-  { label: "CRM ativo há mais de 3 anos", value: "crm_mais_3_anos" },
+  { label: "CRM ativo há mais de 6 anos", value: "crm_mais_6_anos" },
+  { label: "CRM ativo entre 3 e 6 anos", value: "crm_entre_3_e_6_anos" },
   { label: "CRM ativo há menos de 3 anos", value: "crm_menos_3_anos" },
   { label: "Revalidando", value: "revalidando" },
   { label: "Interno", value: "interno" },
-  { label: "Estudante de Medicina - Ciclo Clínico", value: "estudante_ciclo_clinico" },
-  { label: "Estudante de Medicina - Ciclo Básico", value: "estudante_ciclo_basico" },
-  { label: "Não sou médico", value: "nao_medico" },
+  { label: "Ciclo Clínico", value: "estudante_ciclo_clinico" },
+  { label: "Ciclo Básico", value: "estudante_ciclo_basico" },
+  { label: "Outras Profissões", value: "nao_medico" },
 ];
 
 interface LeadCaptureModalProps {
