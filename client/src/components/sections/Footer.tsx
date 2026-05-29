@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-8">
           {/* Logo */}
           <img
-            src={`${baseUrl}images/POCUS ONLINE BRANCA.png`}
+            src={`${baseUrl}images/POCUS ONLINE NOVO.png`}
             alt="POCUS Online"
             className="h-8 sm:h-10 w-auto opacity-90"
             loading="lazy"

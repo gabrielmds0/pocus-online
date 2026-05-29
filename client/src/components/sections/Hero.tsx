@@ -45,9 +45,9 @@ export default function Hero() {
         {/* Logo */}
         <div className="mb-10 lg:mb-14">
           <img
-            src={`${baseUrl}images/POCUS ONLINE BRANCA.png`}
+            src={`${baseUrl}images/POCUS ONLINE NOVO.png`}
             alt="POCUS Online"
-            className="h-10 sm:h-12 lg:h-14 w-auto"
+            className="h-15 sm:h-12 lg:h-14 w-auto"
             loading="eager"
           />
         </div>
