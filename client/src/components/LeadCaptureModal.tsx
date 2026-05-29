@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { saveFormData, buildTrackedUrl, getStoredUtms } from "@/hooks/useTracking";
 import { useFormTracking, getCaptureData } from "@/hooks/useFormTracking";
 
-const REDIRECT_URL = "https://clkdmg.site/pay/link-pocus-online";
+const REDIRECT_URL = "https://clkdmg.site/pay/link-pocusonline";
 const WEBHOOK_URL =
   "https://projetolm-n8n.8x0hqh.easypanel.host/webhook/6f8b3cb4-f5e0-4e35-8d50-2e85eb0cc06b";
 
@@ -22,7 +22,8 @@ const tempoFormadoOptions = [
   { label: "CRM ativo entre 3 e 6 anos", value: "crm_entre_3_e_6_anos" },
   { label: "CRM ativo há menos de 3 anos", value: "crm_menos_3_anos" },
   { label: "Revalidando", value: "revalidando" },
-  { label: "Interno", value: "interno" },
+  { label: "(Primeiro Ano) Interno", value: "primeiro_ano_interno" },
+  { label: "(Ultimo Ano) Interno", value: "ultimo_ano_interno" },
   { label: "Ciclo Clínico", value: "estudante_ciclo_clinico" },
   { label: "Ciclo Básico", value: "estudante_ciclo_basico" },
   { label: "Outras Profissões", value: "nao_medico" },
