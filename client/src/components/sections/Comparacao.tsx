@@ -22,7 +22,7 @@ export default function Comparacao() {
         <div className="text-center mb-12 md:mb-16">
           <div className="accent-line mx-auto mb-6" />
           <h2 className="headline-section max-w-2xl mx-auto">
-            Para quem é o curso Descomplica POCUS Online?
+            Para quem é o curso Formação POCUS Online?
           </h2>
         </div>
 

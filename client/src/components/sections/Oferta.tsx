@@ -62,7 +62,7 @@ export default function Oferta() {
           <div className="relative bg-background text-foreground rounded-3xl p-7 sm:p-10 lg:p-12" style={{ boxShadow: "0 0 0 1px oklch(0 0 0 / 0.05), 0 25px 60px oklch(0 0 0 / 0.3)" }}>
             <div className="text-center mb-10">
               <div className="accent-line-red mx-auto mb-5" />
-              <h2 className="headline-card mb-2">Descomplica POCUS Online</h2>
+              <h2 className="headline-card mb-2">Formação POCUS Online</h2>
               <p className="body-sm text-muted-foreground">
                 Tudo o que você recebe para usar POCUS com segurança no plantão
               </p>
