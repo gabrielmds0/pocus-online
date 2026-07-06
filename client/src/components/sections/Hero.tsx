@@ -2,7 +2,7 @@ import { Calendar, CreditCard, Monitor } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const baseUrl = import.meta.env.BASE_URL;
-const playerId = "69e6871488365845bdfd0f9a";
+const playerId = "6a4bf2069ecb0313ceb29174";
 const playerScriptId = `converteai-player-${playerId}`;
 const playerScriptSrc = `https://scripts.converteai.net/a7916126-1eb3-4f27-8f5d-42892188f754/players/${playerId}/v4/player.js`;
 
