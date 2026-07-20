@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { saveFormData, buildTrackedUrl, getStoredUtms } from "@/hooks/useTracking";
 import { useFormTracking, getCaptureData } from "@/hooks/useFormTracking";
 
-const REDIRECT_URL = "https://clkdmg.site/pay/link-pocusonline";
+const REDIRECT_URL = " https://clkdmg.site/pay/link-pocusonline";
 const WEBHOOK_URL =
   "https://projetolm-n8n.8x0hqh.easypanel.host/webhook/6f8b3cb4-f5e0-4e35-8d50-2e85eb0cc06b";
 
